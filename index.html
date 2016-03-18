@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="TodoApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="app.js"></script>
+  <script src="js/controllers/todos_controller.js"></script>
+
+  <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" >
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body ng-controller="TodosController">
+  <section id="main" class="container-fluid">
+    <header class="well well-sm">
+      <h1>Angular Todo App</h1>
+      <h3>You have {{todos.length}} todos to do!</h3>
+    </header>
+    <section>
+      <label>Completed</label>
+      <ul id="completed-todos" class="list-group">
+        <li ng-repeat="todo in completedTodos track by $index" class="list-group-item">
+          {{todo.task}}
+          <button class="btn btn-sm btn-danger pull-right"
+                  ng-click="undoTodo($index)">Done</button>
+        </li>
+      </ul>
+      <label>Not Completed</label>
+      <ul id='todos' class="list-group">
+        <li ng-repeat="todo in todos track by $index" class="list-group-item">
+          {{todo.task}}
+          <button class="btn btn-sm btn-success pull-right"
+                  ng-click="deleteTodo($index)">Done</button>
+        </li>
+      </ul>
+      <form id='add-todo' class="form-inline" ng-submit="addTodo()">
+        <div class="form-group">
+          <input class="input-lg form-control"
+                 type="text"
+                 placeholder='I need to...'
+                 ng-model="newTodo.task">
+        </div>
+      </form>
+      <p ng-show='newTodo.task'>About to add todo: <strong>{{newTodo.task}}</strong></p>
+    </section>
+  </section>
+</body>
+</html>

@@ -1,0 +1,12 @@
+#main {
+  margin: 0 auto;
+  width: 80%;
+}
+
+#add-todo > div {
+  width: 100%;
+}
+
+#add-todo > div > input {
+  width: 100%;
+}
